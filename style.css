@@ -1,0 +1,44 @@
+* {
+
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    text-decoration: none;
+}
+
+body {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+    height: 100vh;
+}
+
+table {
+
+    border: 1px solid black;
+    border-spacing: 0px;
+    background-color: rgb(255, 255, 255);
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+
+table thead {
+
+    color: white;
+    background-color: rgb(1, 1, 125);
+}
+table td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+table tbody tr:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: lightgrey;
+}

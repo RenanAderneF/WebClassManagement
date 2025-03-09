@@ -1,0 +1,71 @@
+[
+
+    {  "id": 1,
+        "nome": "Turma 4 ano",
+        "capacidade": 30,
+        "gestor": "Erick"
+    },
+    {   "id": 2,
+        "nome": "Turma 5 ano",
+        "capacidade": 30,
+        "gestor": "Ricardo"
+    },
+    {   "id": 3,
+        "nome": "Turma 6 ano",
+        "capacidade": 30,
+        "gestor": "Erick"
+    },
+    {   "id": 4,
+        "nome": "Turma 7 ano",
+        "capacidade": 30,
+        "gestor": "Julia"
+    },
+    {   "id": 5,
+        "nome": "Turma 5 ano",
+        "capacidade": 30,
+        "gestor": "Julia"
+    },
+    {   "id": 6,
+        "nome": "Turma 3 ano",
+        "capacidade": 30,
+        "gestor": "Paulo"
+    },
+
+    {  "id": 7,
+        "nome": "Turma 4 ano",
+        "capacidade": 30,
+        "gestor": "Erick"
+    },
+    {   "id": 8,
+        "nome": "Turma 5 ano",
+        "capacidade": 30,
+        "gestor": "Ricardo"
+    },
+    {   "id": 9,
+        "nome": "Turma 6 ano",
+        "capacidade": 30,
+        "gestor": "Erick"
+    },
+    {   "id": 10,
+        "nome": "Turma 7 ano",
+        "capacidade": 30,
+        "gestor": "Ana"
+    },
+    {   "id": 11,
+        "nome": "Turma 5 ano",
+        "capacidade": 30,
+        "gestor": "Paulo"
+    },
+    {   "id": 12,
+        "nome": "Turma 3 ano",
+        "capacidade": 30,
+        "gestor": "Julio"
+    }
+]
+
+
+
+
+    
+
+
