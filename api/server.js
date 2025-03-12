@@ -1,15 +1,14 @@
 import express from 'express';
 import cors from 'cors';
+import turmaRouter from './routes/turma.js'
 
 const app = express();
-
 
 //Permite comunicação Cross-Origin:
 app.use(cors());
 
-app.get("/", (req, res) => {
-    res.send("Requisição recebida!");
-})
+app.use("/turmas", turmaRouter);
+
 
 app.listen(3000, (error) => {
 

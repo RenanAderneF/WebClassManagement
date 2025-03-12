@@ -9,9 +9,7 @@ const tabelaTurmas = document.getElementById("tabelaTurmas");
 //Retorna o array de turmas do arquivo json "data.json".
 async function getTurmas () {
     
-    return fetch('./data/turmas.json')
-    .then(response => response.json())
-    .catch(error => console.error("Error fetching JSON", error));
+    
 }
 
 //Cria o cabeçalho da tabela e os registros de turma presentes no JSON:
