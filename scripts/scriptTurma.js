@@ -31,11 +31,11 @@ async function criaRegistros() {
             </tr>
         </thead>
         
-        <tbody>
+        <tbody id=corpoTabela>
             ${arrayTurmas.map((turma) => 
 
                 `
-                    <tr>    
+                    <tr id=${turma.turma_id} class="registro">    
                         <td>${turma.nome}</td>
                         <td>${turma.capacidade}</td>
                     </tr>
@@ -51,3 +51,11 @@ async function criaRegistros() {
 //Eventos:
 
 document.addEventListener("DOMContentLoaded", criaRegistros);
+
+tabelaTurmas.addEventListener("click", (e) => {
+   
+    if(e.target.parentElement.classList.contains("registro")){
+        alert(e.target.parentElement.id)
+    }
+    
+})
