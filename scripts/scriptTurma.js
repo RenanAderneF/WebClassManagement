@@ -9,65 +9,45 @@ const tabelaTurmas = document.getElementById("tabelaTurmas");
 //Retorna o array de turmas do arquivo json "data.json".
 async function getTurmas () {
     
+    const response = await fetch('http://localhost:4242/turmas')
+        .then(response => response.json())
+        .catch(error => {console.log("Não foi possível buscar as turmas. ", error)});
     
+    const data = response;
+    return data; 
 }
 
-//Cria o cabeçalho da tabela e os registros de turma presentes no JSON:
+//Exibe turmas para o cliente:
 async function criaRegistros() {
 
-    let turmas = await getTurmas();
-    let turmasLength = Object.keys(turmas).length;
+    const arrayTurmas = await getTurmas();
 
-    if(turmasLength != 0) {
-        tabelaTurmas.innerHTML = `
-            <thead>
-                <tr>
-                    <td> Nome </td>
-                    <td> Capacidade </td>
-                    <td> Gestor </td>
-                </tr>
-            </thead>
-        `
-        tabelaTurmas.innerHTML += turmas.map(turma => 
-            `<tr id=${turma.id} class="registroTurma"}>
-                <td>${turma.nome}</td>
-                <td>${turma.capacidade}</td>
-                <td>${turma.gestor}</td>
+    tabelaTurmas.innerHTML = `
+
+        <thead>
+            <tr>
+                <td> Nome </td>
+                <td> Capacidade </td>
             </tr>
-            `
-        ).join("");
-    
-        tabelaTurmas.innerHTML += `</tbody`
-    } else {
-    
-        alert("Não há turmas registradas.")
-    }
-}
+        </thead>
+        
+        <tbody>
+            ${arrayTurmas.map((turma) => 
 
-//Retorna o id de turma clicada na tabela para importação:
-export function getTurmaId() {
+                `
+                    <tr>    
+                        <td>${turma.nome}</td>
+                        <td>${turma.capacidade}</td>
+                    </tr>
+                `
+            ).join("")}
+        </tbody>`
+    ;
 
-    return turmaId;
+    
+
 }
 
 //Eventos:
 
-if(tabelaTurmas != null) {
-
-    //Carrega turmas:
-    document.addEventListener('DOMContentLoaded', criaRegistros);
-
-    //Navega para a página de turma ao clicar em turma da tabela.
-    tabelaTurmas.addEventListener("click", (e)=> {
-
-        if(e.target.tagName === "TD") {
-            sessionStorage.setItem("turma", e.target.parentElement.id);
-            window.location.href = './turma.html';
-        }
-    })    
-}
-
-
-
-
-
+document.addEventListener("DOMContentLoaded", criaRegistros);

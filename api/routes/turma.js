@@ -1,18 +1,29 @@
 import express from 'express';
+import 'dotenv/config';
+import { neon } from '@neondatabase/serverless';
+
+//Variável de realização de query:
+const sql = neon(`${process.env.DATABASE_URL}`);
 
 //Roteamento do endpoint de turmas de gestor:
 const router = express.Router();
 
 //Lê turmas do sistema:
-router.get("/", (req, res) => {
+router.get("/", async (_, res) => {
 
+	try { 
+		const turmas = await sql`SELECT * FROM exibeturmasgestor('erickgeo21@gmail.com')`;
+		res.json(turmas)
+	} 
+	catch (error)  {
+		res.status(500).json({error})
+	}
 });
 
 //Cria turma:
-router.post("/criar", (req, res) => {
-	const { nome } = req.body;
-	const { capacidade } = req.body;
-
+router.post("/criar", async (_, res) => {
+	await sql`CALL addTurma('erickgeo@gmail.com', 50, 'Turma 8° ano')`;
+	res.send("Dados inseridos com sucesso!")
 });
 
 //Lê turma específica dinamicamente:
