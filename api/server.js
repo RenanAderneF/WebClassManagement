@@ -2,6 +2,8 @@ import express from 'express';
 import 'dotenv/config';
 import { neon } from '@neondatabase/serverless';
 import cors from 'cors';
+import indexRouter from './routes/index.js';
+import homeRouter from './routes/home.js';
 import turmaRouter from './routes/turma.js';
 
 //Cria aplicação Express:
@@ -20,6 +22,8 @@ app.get('/', async (_, res) => {
 app.use(cors());
 
 //Roteadores importados:
+app.use("/index", indexRouter);
+app.use("/home", homeRouter);
 app.use("/turmas", turmaRouter);
 
 //Inicia conexão:

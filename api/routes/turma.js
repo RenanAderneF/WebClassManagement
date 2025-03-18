@@ -22,7 +22,7 @@ router.get("/", async (_, res) => {
 
 //Cria turma:
 router.post("/criar", async (_, res) => {
-	await sql`CALL addTurma('erickgeo@gmail.com', 50, 'Turma 8° ano')`;
+	await sql`CALL addTurma('erickgeo21@gmail.com', 20, 'Turma Natação')`;
 	res.send("Dados inseridos com sucesso!")
 });
 
