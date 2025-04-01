@@ -16,28 +16,32 @@ router.use(express.urlencoded({extended: true}))
 router.post("/", async (req, res) => {
 
     try {
-        const { email, password } = req.body;
-        
-        //Verificar se e-mail existe no banco:
-        const users = await sql`SELECT email FROM users WHERE email=${email}`;
 
-        //Verifica se usuário já existe
-        if(users.length === 0) {
-            return res.status(404).send("E-mail incorreto ou usuário não existe");
+        const { email, password } = req.body;        
+        
+        //Verifica se usuário existe
+        const user = await sql`SELECT EXISTS (
+        SELECT 1 FROM users WHERE email = ${email})`;
+
+        const userExists = user[0].exists;
+        
+        //Se usuário não existir
+        if(!userExists) {
+            return res.status(409).send("Usuário não encontrado");
         }
         
-        //Obtém o hash que corresponde ao email inserido:
-        const hash = await sql`SELECT password FROM users WHERE email=${email}`;
-                
+        //Se usuário existe, obtém o hash que corresponde ao email inserido:
+        const data = await sql`SELECT password FROM users WHERE email=${email}`;
+        const hash = data[0].password;
+        
         //Compara senha inserida com hash de email correspondente:
-        const equivalente = bcrypt.compare(password, hash);
+        const equalPassword = await bcrypt.compare(password, hash);
+         
+        if(!equalPassword) {
+            return res.status(401).send("Senha inserida está incorreta.");
+        }
         
-        if(!equivalente) {
-            return res.status(509).send("Senha incorreta");
-        } 
-        
-        //Sendo equivalente, usuário é redirecionado para dashboard, com seus dados:
-        res.status(200).send("Usuário autenticado!");
+        return res.status(200).send("Usuário autenticado!");
     }
     catch (error) {
         console.error(error);
