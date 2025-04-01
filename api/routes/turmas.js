@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", async (_, res) => {
 
 	try { 
-		const turmas = await sql`SELECT * FROM exibeturmasgestor('erickgeo21@gmail.com')`;
+		const turmas = await sql`SELECT * FROM exibeturmasgestor('erickgeo@gmail.com')`;
 		res.json(turmas)
 	} 
 	catch (error)  {
@@ -22,13 +22,14 @@ router.get("/", async (_, res) => {
 
 //Cria turma:
 router.post("/criar", async (_, res) => {
-	await sql`CALL addTurma('erickgeo21@gmail.com', 20, 'Turma Natação')`;
+	await sql`CALL addTurma('erickgeo@gmail.com', 20, 'Turma Ciclismo')`;
 	res.send("Dados inseridos com sucesso!")
 });
 
 //Lê turma específica dinamicamente:
-router.get("/turma_:id", (req, res) => {
-	res.send(`Exibe turma com id ${req.params.id}`);
+router.get('/:id', (req, res) => {
+	//res.send(`Exibe turma com id ${req.params.id}`);
+	res.send('<h1>oiiiii</h1>');
 });
 
 export default router;

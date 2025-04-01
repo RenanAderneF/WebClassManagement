@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/global.css">
+    <link rel="stylesheet" href="style.css">
+    <title> Login </title>
+</head>
+<body>
+    <main>
+        <form>
+            <p> Entre em sua conta: </p>
+            <br>
+            <label for="username"> Nome: </label>
+            <input type="text" id="username" name="username"/>
+            <label for="email"> E-mail: </label>
+            <input type="email" id="email" name="email"/>
+            <label for="atribuicao"> Atribuição: </label>
+            <select name="atribuicao" id="atribuicao">
+                <option value = 1> Praticante </option>
+                <option value = 2> Professor </option>
+
+            </select>
+            <label for="password"> Senha: </label>
+            <input type="password" id="password" name="password"/>
+            <label for="confirmSenha"> Confirmar senha: </label>
+            <input type="password" id="confirmPassword"/>
+            <br>
+            <button type="submit" id="btnForm" onClick=postLogin> Enviar </button>
+        </form>
+        <a href="/pages/login/index.html">Já tenho uma conta</a>
+
+        <script>
+
+            //Selecionando formulário no DOM:
+            const form = document.querySelector('form');
+            
+            //Funções:
+            async function postLogin() {
+
+                //Criando FormData:
+                const data = new FormData(form);
+
+                //Utilizando FormData no objeto URLSearchParams:
+                const payload = new URLSearchParams(data);
+
+                fetch("http://localhost:4242/cadastro", {
+                    method: "POST",
+                    body: payload
+                })
+                .catch(err => console.log(err));
+            }
+
+
+            //Evento:
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                //Selecionando campos de senha no DOM para verificação
+                const password = document.getElementById("password");
+                const confirmPassword = document.getElementById("confirmPassword");
+                
+                if(password.value !== confirmPassword.value) {
+                    alert("Senhas inseridas não são semelhantes.");
+                    return;
+                }
+
+                postLogin();
+            })
+
+        </script>
+    
+    </main>
+</body>
+</html>

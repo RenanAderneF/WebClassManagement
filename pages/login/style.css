@@ -1,0 +1,32 @@
+form {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(184, 215, 254);
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 500px;
+
+}
+
+form p {
+
+    font-size: 1.4em;
+}
+
+form label {
+    font-size: 1.3em;
+}
+form input {
+
+    padding: 5px;
+    font-size: 1.3em;
+    background-color: whitesmoke;
+}
+
+form button {
+
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgb(80, 80, 233);
+}

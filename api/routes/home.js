@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get("/", async (_, res) => {
 
-    const response = await sql`SELECT username, sexo, birthday, phone, email, estado, cidade, bairro, logradouro, numero, complemento  FROM users WHERE email = 'erickgeo21@gmail.com'`
+    const response = await sql`SELECT username, sexo, birthday, phone, email, estado, cidade, bairro, logradouro, numero, complemento  FROM users WHERE email = 'erickgeo@gmail.com'`
     res.json(response);
 })
 

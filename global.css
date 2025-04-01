@@ -1,0 +1,25 @@
+* {
+
+    text-decoration: none;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    font-size: 1em;
+    outline: none;
+}
+
+body {
+
+    min-height: 100vh;
+}
+
+main {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    min-height: 100vh;
+
+}

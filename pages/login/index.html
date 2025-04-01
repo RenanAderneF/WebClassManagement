@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/global.css">
+    <link rel="stylesheet" href="style.css">
+    <title> Login </title>
+</head>
+<body>
+    <main>
+        <form>
+            <p> Entre em sua conta: </p>
+            <br>
+            <label for="email"> E-mail: </label>
+            <input type="email" id="email" name="email"/>
+            <label for="senha"> Senha: </label>
+            <input type="password" id="senha" name="senha"/>
+            <label for="confirmSenha"> Confirmar senha: </label>
+            <input type="password" id="confirmSenha"/>
+            <br>
+            <button type="submit" id="btnForm" onClick=postLogin> Enviar </button>
+        </form>
+        <a href="/pages/cadastro/index.html"> Não possui uma conta? </a>
+
+        <script>
+
+            //Selecionando formulário no DOM:
+            const form = document.querySelector('form');
+            
+            //Funções:
+            async function postLogin() {
+
+                //Criando FormData:
+                const data = new FormData(form);
+
+                //Utilizando FormData no objeto URLSearchParams:
+                const payload = new URLSearchParams(data);
+
+                fetch("http://localhost:4242/login", {
+                    method: "POST",
+                    body: payload
+                })
+                .catch(err => console.log(err));
+            }
+
+
+            //Evento:
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                postLogin();
+            })
+
+        </script>
+    
+    </main>
+</body>
+</html>

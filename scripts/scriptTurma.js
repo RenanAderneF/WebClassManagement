@@ -52,10 +52,11 @@ async function criaRegistros() {
 
 document.addEventListener("DOMContentLoaded", criaRegistros);
 
-tabelaTurmas.addEventListener("click", (e) => {
+tabelaTurmas.addEventListener("click", async (e) => {
    
     if(e.target.parentElement.classList.contains("registro")){
-        alert(e.target.parentElement.id)
+        const idTurma = e.target.parentElement.id;
+        await fetch(`http://localhost:4242/turmas/:${idTurma}`)
     }
     
 })
