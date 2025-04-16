@@ -21,8 +21,8 @@
             <br>
             <button type="submit" id="btnForm" onClick=postLogin> Enviar </button>
         </form>
-        <a href="/pages/cadastro/index.html"> Não possui uma conta? </a>
-
+        <a href="/pages/cadastro/cadastro.html"> Não possui uma conta? </a>
+      
         <script>
 
             //Selecionando formulário no DOM:
@@ -37,11 +37,24 @@
                 //Utilizando FormData no objeto URLSearchParams:
                 const payload = new URLSearchParams(data);
 
-                fetch("http://localhost:4242/login", {
+                const res = await fetch("http://127.0.0.1:4242/login", {
                     method: "POST",
-                    body: payload
+                    body: payload,
+                    credentials: "include"
                 })
-                .catch(err => console.log(err));
+                
+
+                if(res.ok) {
+                    //window.location.href="/pages/home/home.html";
+                    console.log("Navegação feita");
+                } else if (res.status === 400) {
+                    alert("Usuário não encontrado.");
+                }
+                else if (res.status === 401) {
+                    alert("Senha incorreta.");
+                } else if (res.status === 500) {
+                    alert("Erro no servidor.")
+                }   
             }
 
 

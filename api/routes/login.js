@@ -2,6 +2,7 @@ import express from 'express';
 import 'dotenv/config';
 import { neon } from '@neondatabase/serverless';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 //Variável de realização de query:
 const sql = neon(`${process.env.DATABASE_URL}`);
@@ -12,7 +13,7 @@ const router = express.Router();
 //Permite processamento de formData:
 router.use(express.urlencoded({extended: true}))
 
-//Verifica dados do usuário (caso existam):
+//Verifica dados do usuário (caso existam) e cria token:
 router.post("/", async (req, res) => {
 
     try {
@@ -25,9 +26,9 @@ router.post("/", async (req, res) => {
 
         const userExists = user[0].exists;
         
-        //Se usuário não existir
+        //Se usuário não existir:
         if(!userExists) {
-            return res.status(409).send("Usuário não encontrado");
+            return res.status(400).send("Usuário não encontrado");
         }
         
         //Se usuário existe, obtém o hash que corresponde ao email inserido:
@@ -41,7 +42,32 @@ router.post("/", async (req, res) => {
             return res.status(401).send("Senha inserida está incorreta.");
         }
         
-        return res.status(200).send("Usuário autenticado!");
+        //Cria token do usuário:
+
+        const tokenData = await sql`SELECT id, atribuicao_id FROM users WHERE email = ${email}`;
+
+        const id = tokenData[0].id;
+        const atribuicao_id = tokenData[0].atribuicao_id;
+
+        //Conteúdo do corpo do JWT:
+        const payload = {
+            sub: id, 
+            atribuicao: atribuicao_id
+        }
+
+        //Assina token de acesso com o corpo e o segredo:
+        const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: '1d'
+        });
+
+        //Cria e retorna cookie:
+        return res.cookie("access_token", accessToken, {
+            httpOnly: true,
+            sameSite: "Lax",
+            maxAge: 1000 * 60 * 60 * 24
+        })
+        .status(200)
+        .json("Usuário autenticado com sucesso!");
     }
     catch (error) {
         console.error(error);

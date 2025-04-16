@@ -1,7 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
-import { neon } from '@neondatabase/serverless';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import indexRouter from './routes/index.js';
 import homeRouter from './routes/home.js';
 import turmasRouter from './routes/turmas.js';
@@ -12,16 +12,14 @@ import loginRouter from './routes/login.js';
 const app = express();
 const PORT = process.env.PORT || 4242;
 
-//Testando api:
-app.get('/', async (_, res) => {
-    const sql = neon(`${process.env.DATABASE_URL}`);
-    const response = await sql`SELECT version()`;
-    const { version } = response[0];
-    res.json({ version });
-  });
+//Middleware para Cookies:
+app.use(cookieParser());
 
 //Permite comunicação Cross-Origin:
-app.use(cors());
+app.use(cors({
+    origin: "http://127.0.0.1:5500",
+    credentials: true
+}));
 
 //Roteadores importados:
 app.use("/index", indexRouter);

@@ -30,3 +30,9 @@ form button {
     border-radius: 8px;
     background-color: rgb(80, 80, 233);
 }
+
+form button:hover {
+    transition: 0.3s;
+    background-color: rgb(59, 59, 174);
+    cursor: pointer;
+}
