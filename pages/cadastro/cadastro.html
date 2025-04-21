@@ -10,14 +10,14 @@
 <body>
     <main>
         <form>
-            <p> Entre em sua conta: </p>
+            <p> Crie uma conta: </p>
             <br>
             <label for="username"> Nome: </label>
             <input type="text" id="username" name="username"/>
             <label for="email"> E-mail: </label>
             <input type="email" id="email" name="email"/>
-            <label for="atribuicao"> Atribuição: </label>
-            <select name="atribuicao" id="atribuicao">
+            <label for="atribuicao_id"> Atribuição: </label>
+            <select name="atribuicao_id" id="atribuicao_id">
                 <option value = 1> Praticante </option>
                 <option value = 2> Professor </option>
 
@@ -45,11 +45,16 @@
                 //Utilizando FormData no objeto URLSearchParams:
                 const payload = new URLSearchParams(data);
 
-                fetch("http://localhost:4242/cadastro", {
+                const res = await fetch("http://localhost:4242/cadastro", {
                     method: "POST",
                     body: payload
                 })
-                .catch(err => console.log(err));
+                
+                if(res.ok) {
+                    window.location.href ="/pages/login/index.html";
+                }
+
+
             }
 
 
