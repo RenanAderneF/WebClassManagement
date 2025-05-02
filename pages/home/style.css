@@ -31,4 +31,7 @@ main {
     gap: 20px;
 }
 
+main p {
+    width: 70%;
+}
 

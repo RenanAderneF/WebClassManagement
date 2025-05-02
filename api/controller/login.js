@@ -34,7 +34,6 @@ async function loginUsuario (req, res) {
         }
         
         //Cria token do usuário:
-
         const tokenData = await sql`SELECT id, atribuicao_id FROM users WHERE email = ${email}`;
 
         const id = tokenData[0].id;

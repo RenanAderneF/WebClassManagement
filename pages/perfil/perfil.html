@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Perfil de usuário </title>
+</head>
+<body>
+    <main>
+        <section id="userCard">
+
+        </section>
+    </main>
+</body>
+
+<script>
+
+    //Seleção de elementos:
+
+    const userCard = document.getElementById("userCard");
+
+    //Funções:
+
+    const preenchePerfil = (data) => {
+        
+        userCard.innerHTML = `
+
+            <ul>
+                <li> ${data.username} </li>
+                <li> E-mail: ${data.email} </li>
+                <li> Contato: ${data.phone} </li>
+                <li> Nascimento: ${data.birthday} </li>
+                <li> Endereço: ${data.cidade}, ${data.bairro}, ${data.logradouro}, ${data.numero}, ${data.complemento} </li>
+            </ul>
+        `
+
+    }
+
+    //Eventos:
+
+    document.addEventListener('DOMContentLoaded', async ()=> {
+
+        const response = await fetch("http://127.0.0.1:4242/home/user", {
+            method: 'GET',
+            credentials: 'include'
+        });
+
+        if(response.ok) {
+            let userData = await response.json();
+            userData = userData[0];
+            preenchePerfil(userData);
+        }
+    })
+</script>
+</html>
+

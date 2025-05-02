@@ -16,8 +16,6 @@
             <input type="email" id="email" name="email"/>
             <label for="password"> Senha: </label>
             <input type="password" id="password" name="password"/>
-            <label for="confirmPassword"> Confirmar senha: </label>
-            <input type="password" id="confirmPassword"/>
             <br>
             <button type="submit" id="btnForm" onClick=postLogin> Enviar </button>
         </form>
@@ -64,16 +62,12 @@
                 
                 //Selecionando campos de senha no DOM para verificação
                 const password = document.getElementById("password");
-                const confirmPassword = document.getElementById("confirmPassword");
                 
                 if(password.value === ""){
                     alert("Insira uma senha");
                     return;
                 }
-                if(password.value !== confirmPassword.value) {
-                    alert("Senhas inseridas não são semelhantes.");
-                    return;
-                }
+                
                 postLogin();
             })
 

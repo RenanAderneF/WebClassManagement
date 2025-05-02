@@ -32,6 +32,13 @@ app.use("/cadastro", cadastroRouter);
 app.use("/logout", logoutRouter);
 app.use("/protected", protectedRouter);
 
+//Rota de teste para servidor:
+
+app.get("/", (req, res) => {
+
+    return res.send("Servidor conectado");
+})
+
 //Inicia conexão:
 app.listen(PORT, (error) => {
 
