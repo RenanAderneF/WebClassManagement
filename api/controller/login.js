@@ -34,14 +34,15 @@ async function loginUsuario (req, res) {
         }
         
         //Cria token do usuário:
-        const tokenData = await sql`SELECT id, atribuicao_id FROM users WHERE email = ${email}`;
+        const tokenData = await sql`SELECT email, atribuicao_id FROM users WHERE email = ${email}`;
 
-        const id = tokenData[0].id;
+        const userEmail = tokenData[0].email;
         const atribuicao_id = tokenData[0].atribuicao_id;
+        
 
         //Conteúdo do corpo do JWT:
         const payload = {
-            id: id, 
+            email: userEmail,
             atribuicao_id: atribuicao_id
         }
 

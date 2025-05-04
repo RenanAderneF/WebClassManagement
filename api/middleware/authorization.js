@@ -15,7 +15,7 @@ const authorization = (req, res, next) => {
         const data = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
         //Cria propriedades no objeto request, referentes aos dados do Cookie, facilitando o acesso a eles:
-        req.id = data.id;
+        req.email = data.email;
         req.atribuicao_id = data.atribuicao_id;
         
         return next();

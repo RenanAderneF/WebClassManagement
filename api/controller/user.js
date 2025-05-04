@@ -5,7 +5,7 @@ const sql = neon(process.env.DATABASE_URL);
 async function buscaUsuario(req, res) {
 
     try {
-        const userData = await sql`SELECT username, sexo, birthday, phone, email, estado, cidade, bairro, logradouro, numero, complemento FROM users WHERE id = ${req.id}`;
+        const userData = await sql`SELECT username, sexo, birthday, phone, email, estado, cidade, bairro, logradouro, numero, complemento FROM users WHERE email = ${req.email}`;
         res.json(userData);
     }
 

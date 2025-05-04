@@ -4,14 +4,16 @@ header {
     margin-bottom: 20px;
 }
 
+header nav {
+    height: 100%;
+}
 header ul {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 50px;
-    width: inherit;
-    height: inherit;
     list-style: none;
+    height: inherit;
 }
 
 header ul a {

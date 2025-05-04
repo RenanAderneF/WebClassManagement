@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title> Turmas </title>
+</head>
+<body>
+    <main>
+        <h1>  Visualização de turmas </h1>
+        <section id="tabelas"></section>
+    </main>
+
+    <script>
+
+        //Seleção de elementos:
+        const tabelas = document.getElementById("tabelas");
+
+        //Funções:
+
+        const geraTurma = (arrayTurmas) => {
+            
+            tabelas.innerHTML = `
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Nome </th>
+                            <th> Capacidade </th>
+                            <th> Gestor </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${arrayTurmas.map((turma) => `
+                            <tr>
+                                <td> ${turma.nome} </td>
+                                <td> ${turma.capacidade} </td>
+                                <td> ${turma.gestor} </td>
+                            </tr>
+                            `
+                        ).join("")}
+                    </tbody>
+                </table>
+            `
+        }
+
+
+        //Eventos:
+
+        document.addEventListener("DOMContentLoaded", async() => {
+            const response = await fetch("http://127.0.0.1:4242/home/turmas", {
+                method: 'GET',
+                credentials: 'include'
+            })
+
+            if(response.ok) {
+                const turmaData = await response.json();
+                geraTurma(turmaData);
+            }
+        })
+    </script>
+</body>
+</html>
