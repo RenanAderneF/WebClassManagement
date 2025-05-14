@@ -1,19 +1,17 @@
 header {
-    height: 100px;
+    min-width: 60px;
     background-color: rgb(80, 80, 233);
-    margin-bottom: 20px;
+    padding: 20px;
 }
 
-header nav {
-    height: 100%;
-}
+
 header ul {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
     list-style: none;
-    height: inherit;
 }
 
 header ul a {
@@ -25,6 +23,10 @@ header ul li:hover {
     transform: scale(1.1);
 }
 
+body {
+    display: flex;
+    height: 100vh;
+}
 main {
     display: flex;
     flex-direction: column;

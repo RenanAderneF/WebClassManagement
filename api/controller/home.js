@@ -1,12 +1,20 @@
 async function checkRole(req, res){
 
-    try {
-        return res.json(req.atribuicao_id);
-    }
+   if(req.atribuicao_id === 1) {
+    //res.render()
+    return res.send("Home de praticante");
+   }
 
-    catch(error) {
-        console.log("Não foi possível checar atribuição do usuário", error)
-    }
+   else if(req.atribuicao_id === 2) {
+    //res.render()
+    return res.send("Home de professor");
+   }
+
+   else if(req.atribuicao_id === 3) {
+    //res.render()
+    return res.send("Home de gestor");
+   }
+
 }
 
 export default checkRole;

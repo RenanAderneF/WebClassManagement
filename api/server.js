@@ -22,6 +22,9 @@ app.use(cors({
     credentials: true
 }));
 
+//Define Engine de view para utilizar EJS
+app.set('view engine', 'ejs');
+
 //Roteadores importados:
 app.use("/index", indexRouter);
 app.use("/home", homeRouter);

@@ -33,7 +33,7 @@
                     </thead>
                     <tbody>
                         ${arrayTurmas.map((turma) => `
-                            <tr>
+                            <tr id="${turma.turma_id}" class="turma">
                                 <td> ${turma.nome} </td>
                                 <td> ${turma.capacidade} </td>
                                 <td> ${turma.gestor} </td>
@@ -59,6 +59,19 @@
                 geraTurma(turmaData);
             }
         })
+
+        document.addEventListener("click", (e) => {
+
+            //Armazena id de turma clicada em Session Storage, então redireciona para turma.html, onde id armazenado será utilizado para retornar os dados da turma.
+
+            if(e.target.tagName === "TD" && e.target.closest('.turma')) {
+                
+                const turma = e.target.closest('.turma');
+                sessionStorage.setItem("turma_id", turma.id);
+                window.location.href = "/pages/home/turmas/turma/turma.html";
+            }
+        })
+
     </script>
 </body>
 </html>
