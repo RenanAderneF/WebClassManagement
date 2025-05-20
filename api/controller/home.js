@@ -1,20 +1,23 @@
-async function checkRole(req, res){
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-   if(req.atribuicao_id === 1) {
-    //res.render()
-    return res.send("Home de praticante");
-   }
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-   else if(req.atribuicao_id === 2) {
-    //res.render()
-    return res.send("Home de professor");
-   }
+//Carrega página inicial com base no papel do usuário:
+async function loadHome(req, res) {
+    
+    if(req.atribuicao_id === 1) {
+        return res.sendFile(`${__dirname}/estático/home-praticante.html`);
+    }
 
-   else if(req.atribuicao_id === 3) {
-    //res.render()
-    return res.send("Home de gestor");
-   }
+    if(req.atribuicao_id === 2) {
+        return res.sendFile(`${__dirname}/estático/home-professor.html`);
+    }
 
+    if(req.atribuicao_id === 3) {
+        return res.sendFile(`${__dirname}/estático/home-gestor.html`);
+    }
+    
 }
 
-export default checkRole;
+export default loadHome;

@@ -36,7 +36,6 @@ app.use("/protected", protectedRouter);
 //Rota de teste para servidor:
 
 app.get("/", (req, res) => {
-
     return res.send("Servidor conectado");
 })
 

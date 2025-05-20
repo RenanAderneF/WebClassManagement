@@ -8,14 +8,9 @@
     <title> FitClasses </title>
 </head>
 <body>
-    <script>
-        //Carrega view de home, com base na atribuição de usuário:
+    <script>    
         document.addEventListener("DOMContentLoaded", async() => {
-            const response = await fetch("http://127.0.0.1:4242/home", {
-                method: 'GET',
-                credentials: 'include'
-
-            });
+            const response = await fetch('http://127.0.0.1:4242/home')
         })
     </script>
 </body>

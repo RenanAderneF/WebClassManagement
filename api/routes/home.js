@@ -1,7 +1,7 @@
 import express from 'express';
-import authorization from '../middleware/authorization.js'
+import authorization from '../middleware/authorization.js';
+import loadHome from '../controller/home.js';
 import buscaUsuario from '../controller/user.js';
-import checkRole from '../controller/home.js';
 import retornaTurmas from '../controller/turmas.js';
 import exibeTurma from '../controller/turma_id.js';
 
@@ -9,7 +9,7 @@ import exibeTurma from '../controller/turma_id.js';
 const router = express.Router();
 
 //Carrega atribuição de usuário ao entrar na home:
-router.get("/", authorization, checkRole);
+router.get("/", authorization, loadHome);
 
 //Retorna credenciais de usuário para seção de perfil:
 router.get("/user", authorization, buscaUsuario);

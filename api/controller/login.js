@@ -11,7 +11,7 @@ async function loginUsuario (req, res) {
 
         const { email, password } = req.body;        
         
-        //Verifica se usuário existe
+        //Verifica se usuário existe:
         const user = await sql`SELECT EXISTS (
         SELECT 1 FROM users WHERE email = ${email})`;
 
@@ -26,14 +26,14 @@ async function loginUsuario (req, res) {
         const data = await sql`SELECT password FROM users WHERE email=${email}`;
         const hash = data[0].password;
         
-        //Compara senha inserida com hash de email correspondente:
+        //Compara senha inserida no formulário com hash de email correspondente:
         const equalPassword = await bcrypt.compare(password, hash);
          
         if(!equalPassword) {
             return res.status(401).send("Senha inserida está incorreta.");
         }
         
-        //Cria token do usuário:
+        //Cria token do usuário, com os dados desejados:
         const tokenData = await sql`SELECT email, atribuicao_id FROM users WHERE email = ${email}`;
 
         const userEmail = tokenData[0].email;
