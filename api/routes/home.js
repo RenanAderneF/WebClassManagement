@@ -1,24 +1,35 @@
 import express from 'express';
 import authorization from '../middleware/authorization.js';
-import loadHome from '../controller/home.js';
-import buscaUsuario from '../controller/user.js';
-import retornaTurmas from '../controller/turmas.js';
-import exibeTurma from '../controller/turma_id.js';
+import loadPaginaHome from '../controller/home.js';
+import { loadPaginaUser, buscaUsuario } from '../controller/user.js';
+import { retornaTurmas, exibeTurma, loadPaginaTurmas } from '../controller/turmas.js';
+import { loadPaginaDesempenho, retornaDesempenho} from '../controller/desempenho.js';
 
 //Roteamento do endpoint da home:
 const router = express.Router();
 
-//Carrega atribuição de usuário ao entrar na home:
-router.get("/", authorization, loadHome);
+//Retorna página home específica:
+router.get("/", authorization, loadPaginaHome);
+
+//Retorna página de usuário/perfil:
+router.get("/user", authorization, loadPaginaUser);
 
 //Retorna credenciais de usuário para seção de perfil:
-router.get("/user", authorization, buscaUsuario);
+router.get("/user/item", authorization, buscaUsuario);
+
+//Retorna página de turmas:
+router.get("/turmas", authorization, loadPaginaTurmas);
 
 //Retorna turmas associadas ao usuário:
-router.get("/turmas", authorization, retornaTurmas);
+router.get("/turmas/itens", authorization, retornaTurmas);
 
 //Retorna turma de id específico:
-router.get("/turmas/:turma_id", authorization, exibeTurma);
+router.get("/turmas/itens/:turma_id", authorization, exibeTurma);
 
+//Retorna página de desempenho:
+router.get("/desempenho", authorization, loadPaginaDesempenho);
+
+//Retorna medições feitas por um praticante:
+router.get("/desempenho/itens", authorization, retornaDesempenho);
 
 export default router;

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1:5500/api/controller/privado/styles/home-praticante.css">
+    <script src="https://kit.fontawesome.com/cbe52a618a.js" crossorigin="anonymous"></script>
+    <title> Home: Praticante </title>
+</head>
+<body>
+    <header > 
+        <h1> Praticante <i class="fa-solid fa-medal"></i></h1>
+    </header>
+    <main>
+        <h1> Bem vindo, praticante! </h1>
+
+        <nav>
+            <div id="nav_turma">
+                <h2> Turmas </h2>
+                <i class="fa-solid fa-chalkboard-user fa-5x" style= "color: var(--corIcones)"></i></a>
+            </div>
+            
+            <div id="nav_desempenho">
+                <h2> Desempenho</h2>
+                <i class="fa-solid fa-person-running fa-5x" style= "color: var(--corIcones)"></i>
+            </div>
+
+            <div id="nav_perfil">
+                <h2> Perfil </h2>
+                <i class="fa-solid fa-user fa-4x" style="color: var(--corIcones)"></i>
+            </div>
+
+        </nav>
+    </main>
+    
+    <script>
+
+        //Ouvinte de evento:
+        document.addEventListener("click", (e) => {
+            if(e.target.id === 'nav_turma') {
+                window.location.href = "http://127.0.0.1:4242/home/turmas";
+            }
+
+            if(e.target.id === 'nav_desempenho') {
+                window.location.href = "http://127.0.0.1:4242/home/desempenho";
+            }
+
+            if(e.target.id === 'nav_perfil') {
+                window.location.href = "http://127.0.0.1:4242/home/user";
+            }
+        })
+    </script>
+</body>
+</html>

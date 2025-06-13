@@ -1,0 +1,93 @@
+:root {
+    --corPrincipal: rgb(35, 25, 224);
+    --corCabecalho: rgb(26, 18, 168);
+    --corFundo:rgb(72, 63, 250);
+    --corTitulos: rgb(239, 238, 238);
+    --corFundoIcones: rgba(255, 142, 142, 0.367);
+    --corIcones: rgb(239, 238, 238);
+    --corFocoIcones: rgba(255, 142, 142, 0.596);
+  
+
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html {
+
+    max-width: 100vw;
+    height: 100vh;
+}
+
+h1, h2 {
+    color: var(--corTitulos);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    max-width: inherit;
+    height: inherit;
+   
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--corPrincipal);
+    padding-top: 40px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border-bottom: 5px solid rgb(255, 255, 255);
+    background-color: var(--corCabecalho);
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav > div {
+    display: flex;
+    flex-direction: column;
+    flex-direction: center;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 10px;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(255, 226, 226);
+    background-color: var(--corFundoIcones);
+    cursor: pointer;
+}
+
+nav > div:hover {
+
+    transition: 1s;
+    background-color: var(--corFocoIcones);
+}
+
+h2, i {
+    pointer-events: none;
+}
+
+

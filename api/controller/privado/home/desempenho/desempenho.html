@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://127.0.0.1:5500/api/controller/privado/home/desempenho/style.css">
+    <title> Desempenho </title>
+</head>
+<body>
+
+    <main>
+        <h1> Desempenho </h1>
+        <section id="tabelas"></section>
+    </main>
+
+    <script>
+
+        //Seleção de elementos:
+        const tabelas = document.getElementById("tabelas");
+
+        //Funções:
+
+        const geraMedicoes = (arrayMedicoes) => {
+            
+            tabelas.innerHTML = `
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Dia </th>
+                            <th> Horário </th>
+                            <th> Medida </th>
+                            <th> Valor </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${arrayMedicoes.map((medicao) => `
+                            <tr>
+                                <td> ${medicao.dia} </td>
+                                <td> ${medicao.horario} </td>
+                                <td> ${medicao.medida} </td>
+                                <td> ${medicao.valor} </td>
+                            </tr>
+                            `
+                        ).join("")}
+                    </tbody>
+                </table>
+            `
+        }
+
+
+        //Eventos:
+
+        document.addEventListener("DOMContentLoaded", async() => {
+            const response = await fetch("http://127.0.0.1:4242/home/desempenho/itens", {
+                method: 'GET',
+                credentials: 'include'
+            })
+
+            if(response.ok) {
+                const medicoesData = await response.json();
+                geraMedicoes(medicoesData);
+            }
+        })
+    </script>
+</body>
+</html>

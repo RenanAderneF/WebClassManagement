@@ -1,3 +1,4 @@
+//Realiza a limpeza do cookie de acesso, removendo a autenticação do usuário:
 async function logoutUsuario (req, res) {
     return res  
         .clearCookie("access_token")

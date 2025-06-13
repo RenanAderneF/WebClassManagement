@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 //Variável de realização de query:
 const sql = neon(`${process.env.DATABASE_URL}`);
 
+//Realiza o login do usuário no sistema, à partir dos dados do banco de dados.
 async function loginUsuario (req, res) {
 
     try {

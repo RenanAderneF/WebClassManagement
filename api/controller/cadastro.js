@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 //Variável de query:
 const sql = neon(process.env.DATABASE_URL);
 
+//Cadastra usuário no sistema, gravando os dados inseridos no banco de dados:
 async function cadastraUsuario (req, res) {
 
     const {username, email, atribuicao_id, password} = req.body;
